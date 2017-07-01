@@ -2,7 +2,6 @@ class PostsController < ApplicationController
 	before_action :require_login
 
 	def index
-		p "current user:", current_user
 		@posts = Post.all
 	end
 	
@@ -17,8 +16,6 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 		@post.save
-		p "Post:"
-		p @post
 		redirect_to posts_path
 	end
 
