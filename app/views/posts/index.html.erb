@@ -23,7 +23,7 @@ Signed in as: <%= current_user.email %>
 				<%= image_tag post.image.url(:medium) %>
 			<% end %>	
 			<br>
-			<%= post.title%> <br>
+			<%= User.find(post.user_id).email%> posted: <%= post.title%> <br>
 			<br>
 		</div>
 	<% end %>
