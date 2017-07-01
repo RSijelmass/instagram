@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 	before_action :require_login
 
 	def index
-		@posts = Post.all
+		@posts = Post.order(:created_at).reverse
 	end
 	
   def show
