@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
+	before_action :require_login
+
 	def index
+		p "current user:", current_user
 		@posts = Post.all
 	end
 	
