@@ -1,6 +1,11 @@
+<%= link_to 'New Post', new_post_path %>
+
 <% @posts.each do |post| %>
-	<p> <%= post.title %> </p>
+	<%= post.title%> <br>
+	<% if post.image %>
+		<%= image_tag post.image.url(:small) %>
+	<% end %>	
+
 	<%= link_to 'Show', post_path(post) %>
 <% end %>
 
-<%= link_to 'New Post', new_post_path %>
