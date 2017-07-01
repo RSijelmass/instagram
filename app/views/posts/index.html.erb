@@ -1,11 +1,14 @@
 <%= link_to 'New Post', new_post_path %>
 
-<% @posts.each do |post| %>
-	<%= post.title%> <br>
-	<% if post.image %>
-		<%= image_tag post.image.url(:small) %>
-	<% end %>	
-
-	<%= link_to 'Show', post_path(post) %>
-<% end %>
-
+<div>
+	<% @posts.each do |post| %>
+		<div id='post'> 
+			<% if post.image %>
+				<%= image_tag post.image.url(:medium) %>
+			<% end %>	
+			<br>
+			<%= post.title%> <br>
+			<br>
+		</div>
+	<% end %>
+</div>
