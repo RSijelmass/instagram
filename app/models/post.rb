@@ -7,9 +7,22 @@ class Post < ApplicationRecord
 	has_many :posts_tags
 	has_many :tags, :through => :posts_tags
 
-	def self.build(post_params, tag_class = Tag)
-		tag = tag_class.find(post_params[:title])
-		p tag
-		post_params
+	def self.find_tag(title, post_id, tag_class = Tag)
+		tag = tag_class.find(title)
+
+		if tag
+			tag_in_db = Tag.find_by(name: tag)
+
+			if tag_in_db
+				PostTag.create!(post_id: post_id, tag_id: tag_in_db.id)
+			else
+				new_tag = Tag.create(name: tag)	
+				post_tag =	PostTag.create!(post_id: post_id, tag_id: new_tag.id)
+			end
+	end
+	end
+
+	def in_database(tag)
+		Tag.find_by(name: tag)
 	end
 end

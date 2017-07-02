@@ -14,7 +14,8 @@ class PostsController < ApplicationController
 	end
 	
 	def create
-		@post = Post.build(post_params)
+		@post = Post.create(post_params)
+		Post.find_tag(post_params[:title], @post.id)
 		redirect_to posts_path
 	end
 
