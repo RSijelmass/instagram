@@ -18,4 +18,8 @@ describe 'Submit a new post' do
 		time = Time.now.strftime('%-d/%m%Y %H:%M')
 		expect(page).to have_content time
 	end
+
+	it 'contains an image' do
+		#...
+	end
 end
