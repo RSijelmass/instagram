@@ -22,8 +22,7 @@ Signed in as: <%= current_user.email %>
 				<%= image_tag post.image.url(:medium) %>
 			<% end %>	
 			<br>
-			<%= User.find(post.user_id).email%> posted: <%= post.title%> <br>
-			<br>
+			<%= User.find(post.user_id).email%>: <%= post.title%> (<%= post.created_at.strftime('%-d/%m%Y %H:%M') %>)<br>
 		</div>
 	<% end %>
 </div>

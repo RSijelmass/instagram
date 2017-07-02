@@ -15,6 +15,7 @@ describe 'Submit a new post' do
 	it 'contains a date time stamp' do
 		sign_up
 		create_post
-		expect(page).to have_content (Time.now.strftime('%-d/%m%Y %H:%M'))
+		time = Time.now.strftime('%-d/%m%Y %H:%M')
+		expect(page).to have_content time
 	end
 end
