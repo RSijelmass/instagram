@@ -14,15 +14,17 @@ class Post < ApplicationRecord
 			tag_in_db = Tag.find_by(name: tag)
 
 			if tag_in_db
-				PostTag.create!(post_id: post_id, tag_id: tag_in_db.id)
+				self.create_posttag(post_id, tag_in_db.id)
 			else
 				new_tag = Tag.create(name: tag)	
-				post_tag =	PostTag.create!(post_id: post_id, tag_id: new_tag.id)
+				self.create_posttag(post_id, new_tag.id)
 			end
 	end
 	end
 
-	def in_database(tag)
-		Tag.find_by(name: tag)
+	private
+
+	def self.create_posttag(post_id, tag_id)
+		PostTag.create!(post_id: post_id, tag_id: tag_id)
 	end
 end

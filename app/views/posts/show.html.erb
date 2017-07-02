@@ -1,5 +1,6 @@
 <p> 
-	Title: <%= @post.title %>
+	<%= User.find(@post.user_id).email %>: <%= @post.title %> <br>
+	<%= image_tag @post.image.url(:medium) %>
 </p>
 
 <%= link_to 'Back', posts_path %>
