@@ -6,4 +6,10 @@ class Post < ApplicationRecord
 
 	has_many :posts_tags
 	has_many :tags, :through => :posts_tags
+
+	def self.build(post_params, tag_class = Tag)
+		tag = tag_class.find(post_params[:title])
+		p tag
+		post_params
+	end
 end
