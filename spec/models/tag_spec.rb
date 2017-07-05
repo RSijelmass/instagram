@@ -10,4 +10,9 @@ RSpec.describe Tag, type: :model do
 		message = 'Such a good salad #healthy #bodyisatemple'
 		expect(Tag.find_hashtag(message)).to eq ['healthy', 'bodyisatemple']
 	end
+
+	it 'returns nil if no hashtags are given' do
+		message = 'I hate hashtags.'
+		expect(Tag.find_hashtag(message)).to eq nil
+	end
 end

@@ -7,6 +7,6 @@ class Tag < ApplicationRecord
 		message.split(' ').each do |word| 
 			hashes << word[1...word.length] if word[0] == '#'
 		end
-		hashes ? hashes : nil
+		hashes.length > 0 ? hashes : nil
 	end
 end
