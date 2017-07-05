@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 		@post = Post.new(post_params)
 		#make sure both title and image are filled in! can't be null
 		if @post.save
-			Post.find_tag(post_params[:title], @post.id)
+			@post.find_tag(post_params[:title])
 			redirect_to posts_path
 		else
 			render :new, notice: 'Something went wrong! Try again.' 
