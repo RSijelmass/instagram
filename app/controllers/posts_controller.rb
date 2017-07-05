@@ -18,10 +18,13 @@ class PostsController < ApplicationController
 		#make sure both title and image are filled in! can't be null
 		if @post.save
 			@post.find_tag(post_params[:title])
+			@post.convert_title_for_tags(post_params[:title])
+			@post.save
 			redirect_to posts_path
 		else
 			render :new, notice: 'Something went wrong! Try again.' 
 		end
+		@post.convert_title_for_tags("some text #hash #two")
 	end
 
 	private

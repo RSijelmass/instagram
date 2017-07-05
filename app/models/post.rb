@@ -11,14 +11,27 @@ class Post < ApplicationRecord
 		return unless tags = tag_class.find_hashtag(title)
 		tags.each do |tag|
 			tag_in_db = Tag.find_or_create_by(name: tag)	
-			create_posttag(self.id, tag_in_db.id)
+			create_posttag(tag_in_db.id)
+		end
+	end
+
+	def convert_title_for_tags(title)
+		new_title = []
+		title.split.each do |word|
+			if word[0] == "#"
+				new_title << "<%= link_to(#{word}) tag_path(#{word[1...word.length]}) %>"
+			else
+				new_title << word
+			end
+		self.title = new_title.join(" ")
 		end
 	end
 
 	private
 
 	#method a tad smelly: you shouldn't need this method to populate table
-	def create_posttag(post_id, tag_id)
-		PostTag.create!(post_id: post_id, tag_id: tag_id)
+	def create_posttag(tag_id)
+		PostTag.create!(post_id: self.id, tag_id: tag_id)
 	end
 end
+
