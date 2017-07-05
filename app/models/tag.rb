@@ -3,9 +3,10 @@ class Tag < ApplicationRecord
 	has_many :posts, through: :posts_tags
 
 	def self.find_hashtag(message)
+		hashes = []
 		message.split(' ').each do |word| 
-			return word[1...word.length] if word[0] == '#'
+			hashes << word[1...word.length] if word[0] == '#'
 		end
-		return nil
+		hashes ? hashes : nil
 	end
 end

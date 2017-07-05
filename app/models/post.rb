@@ -8,9 +8,11 @@ class Post < ApplicationRecord
 	has_many :tags, :through => :posts_tags
 
 	def self.find_tag(title, post_id, tag_class = Tag)
-		return unless tag = tag_class.find_hashtag(title)
-		tag_in_db = Tag.find_or_create_by(name: tag)	
-		self.create_posttag(post_id, tag_in_db.id)
+		return unless tags = tag_class.find_hashtag(title)
+		tags.each do |tag|
+			tag_in_db = Tag.find_or_create_by(name: tag)	
+			self.create_posttag(post_id, tag_in_db.id)
+		end
 	end
 
 	private
