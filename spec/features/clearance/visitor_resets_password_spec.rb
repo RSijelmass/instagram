@@ -7,7 +7,7 @@ RSpec.feature "Visitor resets password" do
   around do |example|
     original_adapter = ActiveJob::Base.queue_adapter
     ActiveJob::Base.queue_adapter = :inline
-    example.run
+   # example.run
     ActiveJob::Base.queue_adapter = original_adapter
   end
 
