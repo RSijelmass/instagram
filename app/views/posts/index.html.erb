@@ -22,7 +22,7 @@ Signed in as: <%= current_user.email %>
 				<%= link_to(image_tag(post.image.url(:thumb)), post_path(post)) %>	
 			<% end %>	
 			<br>
-			<%= User.find(post.user_id).email%>: <%= post.title%> (<%= post.created_at.strftime('%-d/%m%Y %H:%M') %>)<br>
+			<%= User.find(post.user_id).email%>: <%= link_to('#text', tag_path(3)) %> (<%= post.created_at.strftime('%-d/%m%Y %H:%M') %>)<br>
 		</div>
 	<% end %>
 </div>

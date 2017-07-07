@@ -19,11 +19,12 @@ class Post < ApplicationRecord
 		new_title = []
 		title.split.each do |word|
 			if word[0] == "#"
-				new_title << "<%= link_to(#{word}) tag_path(#{word[1...word.length]}) %>"
+			#	new_title << "#{ link_to(word) tag_path(word[1...word.length]) }"
 			else
 				new_title << word
 			end
 		self.title = new_title.join(" ")
+		puts "title: " + self.title
 		end
 	end
 
